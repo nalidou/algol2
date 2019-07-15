@@ -86,6 +86,34 @@ public class LinkedListUtil {
         System.out.println();
     }
 
+    //两个单链表拼接
+    public static void jiont(LNode first, LNode lastNode){
+        LNode node = first;
+        while (node.next != null) {
+            node = node.next;
+        }
+        node.next = lastNode;
+    }
+
+    //返回单链表环的长度
+    public static int getLoopLen(LNode head){
+        int len = 0;
+        LNode node1 = head.next;
+        LNode node2 = head.next.next;
+        while (node1 != node2) {
+            node1 = node1.next;
+            node2 = node2.next.next;
+        }
+
+        node2 = node2.next;
+        len ++;
+        while (node1 != node2) {
+            len ++;
+        }
+        return len;
+    }
+
+    //获取长度
     public static int getLength(LNode head){
         int len = 0;
         LNode node = head.next;
