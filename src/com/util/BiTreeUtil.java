@@ -1,13 +1,13 @@
 package com.util;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
  * 二叉树工具类
  */
 public class BiTreeUtil {
-
-
 
     public static void createTree(BiTreeNode T){
         String str = new Scanner(System.in).next();
@@ -23,18 +23,54 @@ public class BiTreeUtil {
         }
     }
 
+    //根据前序和中序构建
+    public static BiTreeNode createTree(List<String> pre, List<String> mid){
+        if (pre.size() == 0) {
+            return null;
+        }
+        BiTreeUtil.BiTreeNode rootNode = new BiTreeUtil.BiTreeNode(pre.get(0));
+        int rootIndex=0;
+        for (int i=0; i<mid.size(); i++) {
+            if (pre.get(0).equals(mid.get(i))) {
+                rootIndex = i;
+                break;
+            }
+        }
+        List<String> preLeft = new ArrayList<>();
+        List<String> preRight = new ArrayList<>();
+        List<String> midLeft = new ArrayList<>();
+        List<String> minRight = new ArrayList<>();
+        for (int j=0; j<rootIndex; j++) {
+            preLeft.add(pre.get(j+1));
+            midLeft.add(mid.get(j));
+        }
+        for (int k=rootIndex+1; k<mid.size(); k++) {
+            preRight.add(pre.get(k));
+            minRight.add(mid.get(k));
+        }
+        rootNode.l = createTree(preLeft, midLeft);
+        rootNode.r = createTree(preRight, minRight);
+        return rootNode;
+    }
+
     public static void forEach(BiTreeNode T){
-        if(T.v == null){//判断这个节点的数据是否为空
+        if(T==null || T.v == null){//判断这个节点的数据是否为空
             return;
         }
+
         forEach(T.l);
+        System.out.print(T.v);
         forEach(T.r);
-        System.out.print(T.v);//后序遍历
+        //System.out.print(T.v);//后序遍历
     }
 
     public static class BiTreeNode{
-        String v = null;
-        BiTreeNode l = null;
-        BiTreeNode r = null;
+        public String v = null;
+        public BiTreeNode l = null;
+        public BiTreeNode r = null;
+        public BiTreeNode(String v) {
+            this.v = v;
+        }
+        public BiTreeNode(){}
     }
 }
