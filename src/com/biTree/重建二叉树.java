@@ -26,7 +26,7 @@ public class 重建二叉树 {
         List<String> preList = Arrays.asList(pre);
         List<String> midList = Arrays.asList(mid);
         BiTreeUtil.BiTreeNode root = BiTreeUtil.createTree(preList, midList);
-        BiTreeUtil.forEach(root);
+        BiTreeUtil.forEach(root, 1);
     }
 
 }

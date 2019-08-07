@@ -16,14 +16,24 @@ public class 树的子结构 {
 
         String [] pre = new String[] {"1", "2", "4", "7", "3", "5", "6", "8"};
         String [] mid = new String[] {"4", "7", "2", "1", "5", "3", "8", "6"};
-
         List<String> preList = Arrays.asList(pre);
         List<String> midList = Arrays.asList(mid);
         BiTreeUtil.BiTreeNode root = BiTreeUtil.createTree(preList, midList);
-        BiTreeUtil.forEach(root);
+        //BiTreeUtil.forEach(root, 2);
+
+        String [] preChild = new String[] {"30", "5", "6", "8"};
+        String [] midChild = new String[] {"5", "30", "8", "6"};
+        List<String> preChildList = Arrays.asList(preChild);
+        List<String> midChildList = Arrays.asList(midChild);
+        BiTreeUtil.BiTreeNode child = BiTreeUtil.createTree(preChildList, midChildList);
+        //BiTreeUtil.forEach(child, 2);
+        System.out.println(isChildTree(root, child));
     }
 
     static boolean isChildTree(BiTreeUtil.BiTreeNode root, BiTreeUtil.BiTreeNode child) {
+        if (root == null || child == null) {
+            return false;
+        }
         if (root.v.equals(child.v)) {
             return isEquals(root, child);
         } else {
@@ -31,7 +41,6 @@ public class 树的子结构 {
             boolean isRChild = isChildTree(root.r, child);
             return (isLChild | isRChild);
         }
-
     }
     static boolean isEquals(BiTreeUtil.BiTreeNode root, BiTreeUtil.BiTreeNode child){
         if (child == null) {

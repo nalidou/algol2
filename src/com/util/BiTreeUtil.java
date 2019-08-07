@@ -53,15 +53,27 @@ public class BiTreeUtil {
         return rootNode;
     }
 
-    public static void forEach(BiTreeNode T){
+    public static void forEach(BiTreeNode T, int type){
         if(T==null || T.v == null){//判断这个节点的数据是否为空
             return;
         }
+        if (type == 1) {
+            System.out.print(T.v + " ");
+            forEach(T.l, type);
+            forEach(T.r, type);
+        }
 
-        forEach(T.l);
-        System.out.print(T.v);
-        forEach(T.r);
-        //System.out.print(T.v);//后序遍历
+        if (type == 2) {
+            forEach(T.l, type);
+            System.out.print(T.v + " ");
+            forEach(T.r, type);
+        }
+
+        if (type == 3) {
+            forEach(T.l, type);
+            System.out.print(T.v + " ");
+            forEach(T.r, type);
+        }
     }
 
     public static class BiTreeNode{
