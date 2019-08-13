@@ -22,7 +22,7 @@ public class 二叉树的镜像 {
         BiTreeUtil.forEach(root, 1);
     }
 
-    static void image(BiTreeUtil.BiTreeNode root) {
+    public static void image(BiTreeUtil.BiTreeNode root) {
         if (root != null) {
             BiTreeUtil.BiTreeNode tmp = root.l;
             root.l = root.r;

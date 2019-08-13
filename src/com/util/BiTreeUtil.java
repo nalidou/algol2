@@ -80,6 +80,7 @@ public class BiTreeUtil {
         public String v = null;
         public BiTreeNode l = null;
         public BiTreeNode r = null;
+        public BiTreeNode p = null;
         public BiTreeNode(String v) {
             this.v = v;
         }
