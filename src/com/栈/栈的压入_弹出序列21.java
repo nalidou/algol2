@@ -14,20 +14,28 @@ import java.util.Stack;
 public class 栈的压入_弹出序列21 {
 
     public static void main(String[] args) {
-
+        int[] arr1 = new int[]{1,2,3,4,5};
+        int[] arr2 = new int[]{4,3,5,1,2};
+        System.out.println(getResult(arr1, arr2));
     }
 
     static boolean getResult(int[] arr1, int[] arr2){
         Stack<Integer> stack = new Stack();
-        int arr1Index = 0;
-        stack.push(arr1[arr1Index]);
-        for (int i=0; i<arr2.length; i++) {
-            int item2 = arr2[i];
-            int item1 = arr1[arr1Index];
-            if (item1 != item2) {
-                stack.push(item1);
+        int k = 0;
+        for (int i=0; i<arr1.length; i++) {
+            int item1 = arr1[i];
+            stack.push(item1);
+            for (; k<arr2.length; k++) {
+                if (arr2[k] == stack.peek()) {
+                    stack.pop();
+                } else {
+                    break;
+                }
             }
 
+        }
+        if (stack.empty()) {
+            return true;
         }
         return false;
     }
