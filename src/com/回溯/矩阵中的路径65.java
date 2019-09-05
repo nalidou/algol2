@@ -59,19 +59,23 @@ public class 矩阵中的路径65 {
         String left = findLeft(array, r, c, rowT, colT, tmp);
         String right = findRight(array, r, c, rowT, colT, tmp);
 
+        boolean isOn = false;
+        boolean isBottom = false;
+        boolean isLeft = false;
+        boolean isRight = false;
         if (roadItem.equals(on)) {
-            return findRound(array, r-1, c, rowT, colT, road, roadIndex+1, tmp);
+            isOn =  findRound(array, r-1, c, rowT, colT, road, roadIndex+1, tmp);
         }
         if (roadItem.equals(bottom)) {
-            return findRound(array, r+1, c, rowT, colT, road, roadIndex+1, tmp);
+            isBottom = findRound(array, r+1, c, rowT, colT, road, roadIndex+1, tmp);
         }
         if (roadItem.equals(left)) {
-            return findRound(array, r, c-1, rowT, colT, road, roadIndex+1, tmp);
+            isLeft = findRound(array, r, c-1, rowT, colT, road, roadIndex+1, tmp);
         }
         if (roadItem.equals(right)) {
-            return findRound(array, r, c+1, rowT, colT, road, roadIndex+1, tmp);
+            isRight = findRound(array, r, c+1, rowT, colT, road, roadIndex+1, tmp);
         }
-        return false;
+        return isOn || isLeft || isBottom || isRight;
     }
 
     static String findOn(String[][] array, int r, int c, int rowT, int colT, int[][] tmp) {
