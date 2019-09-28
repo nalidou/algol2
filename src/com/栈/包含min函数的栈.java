@@ -18,10 +18,13 @@ public class 包含min函数的栈 {
 //        System.out.println(stack.get(stack.size()-1));
 
         push(3);
+        push(3);
         push(4);
         push(5);
         push(2);
         push(1);
+        push(1);
+        pop();
         pop();
         pop();
         pop();
@@ -36,7 +39,7 @@ public class 包含min函数的栈 {
             minStack.push(v);
         } else {
             int minTop = Integer.valueOf(String.valueOf(minStack.peek()));
-            if (v < minTop) {
+            if (v <= minTop) {
                 minStack.push(v);
             }
         }
